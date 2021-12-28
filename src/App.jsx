@@ -1,9 +1,17 @@
 import React from "react";
+import AppNavBar from "./components/AppNavBar";
+import { Routes, Route } from "react-router-dom";
 
+import Home from "./screens/Home";
+import Categories from "./screens/Categories";
 const App = () => {
   return (
     <div>
-      <h1>Hello World</h1>
+      <AppNavBar />
+      <Routes>
+        <Route path="/home" element={<Home />}></Route>
+        <Route path="/categories" element={<Categories />}></Route>
+      </Routes>
     </div>
   );
 };
