@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
 const AppNavBar = () => {
+  const [active, setActive] = useState(0); // set active for nav items
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light fw-bold">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/home">
+          <Link
+            onClick={() => {
+              setActive(0);
+            }}
+            className="navbar-brand"
+            to="/"
+          >
             Recipe App
           </Link>
           <button
@@ -23,19 +32,32 @@ const AppNavBar = () => {
             <ul className="navbar-nav">
               <li className="nav-item">
                 <Link
-                  className="nav-link active"
+                  onClick={() => {
+                    setActive(0);
+                  }}
+                  className={
+                    active === 0 ? "nav-link active text-primary" : "nav-link"
+                  }
                   aria-current="page"
-                  to="/home"
+                  to="/"
                 >
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/categories">
+                <Link
+                  onClick={() => {
+                    setActive(1);
+                  }}
+                  className={
+                    active === 1 ? "nav-link active text-primary" : "nav-link"
+                  }
+                  to="/categories"
+                >
                   Categories
                 </Link>
               </li>
-              <li className="nav-item">
+              <li>
                 <Link className="nav-link" to="#"></Link>
               </li>
             </ul>
