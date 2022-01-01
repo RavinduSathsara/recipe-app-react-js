@@ -7,6 +7,8 @@ const Home = () => {
 
   // const exaampleReq = `https://api.edamam.com/search?q=chicken&app_id=${AppId}&app_key=${AppKey}`;
 
+  const [recipes, setRecipes] = useState([]);
+
   useEffect(() => {
     getRecipes();
   }, []);
@@ -16,7 +18,8 @@ const Home = () => {
       `https://api.edamam.com/search?q=chicken&app_id=${AppId}&app_key=${AppKey}`
     );
     const data = await response.json();
-    console.log(data);
+    console.log(data.hits);
+    setRecipes(data.hits);
   };
   return (
     <div className="container">
@@ -26,6 +29,14 @@ const Home = () => {
           Search
         </button>
       </form>
+      {recipes.map((recipe) => (
+        <FoodCard
+          key={recipe.recipe.label}
+          title={recipe.recipe.label}
+          calories={recipe.recipe.calories}
+          image={recipe.recipe.image}
+        />
+      ))}
     </div>
   );
 };
