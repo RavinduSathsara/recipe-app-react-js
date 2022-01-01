@@ -20,7 +20,7 @@ const Home = () => {
       `https://api.edamam.com/search?q=${query}&app_id=${AppId}&app_key=${AppKey}`
     );
     const data = await response.json();
-    console.log(data.hits);
+    // console.log(data.hits);
     setRecipes(data.hits);
   };
 
