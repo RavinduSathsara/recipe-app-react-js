@@ -8,26 +8,50 @@ const Home = () => {
   // const exaampleReq = `https://api.edamam.com/search?q=chicken&app_id=${AppId}&app_key=${AppKey}`;
 
   const [recipes, setRecipes] = useState([]);
+  const [search, setSearch] = useState("");
+  const [query, setQuery] = useState("chicken");
 
   useEffect(() => {
     getRecipes();
-  }, []);
+  }, [query]);
 
   const getRecipes = async () => {
     const response = await fetch(
-      `https://api.edamam.com/search?q=chicken&app_id=${AppId}&app_key=${AppKey}`
+      `https://api.edamam.com/search?q=${query}&app_id=${AppId}&app_key=${AppKey}`
     );
     const data = await response.json();
     console.log(data.hits);
     setRecipes(data.hits);
   };
+
+  const updateSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const getSearch = (e) => {
+    e.preventDefault();
+    setQuery(search);
+    setSearch("");
+  };
+
   return (
     <div className="container">
-      <form className="m-4">
-        <input className="form-control" type="text" />
-        <button className="btn btn-success" type="submit">
-          Search
-        </button>
+      <form onSubmit={getSearch} className="m-4">
+        <div className="row">
+          <div className="col-md-8">
+            <input
+              className="form-control"
+              type="text"
+              value={search}
+              onChange={updateSearch}
+            />
+          </div>
+          <div className="col-md-4">
+            <button className="btn btn-success" type="submit">
+              Search
+            </button>
+          </div>
+        </div>
       </form>
       {recipes.map((recipe) => (
         <FoodCard
@@ -35,6 +59,7 @@ const Home = () => {
           title={recipe.recipe.label}
           calories={recipe.recipe.calories}
           image={recipe.recipe.image}
+          ingredients={recipe.recipe.ingredients}
         />
       ))}
     </div>
