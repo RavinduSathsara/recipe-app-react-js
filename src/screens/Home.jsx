@@ -44,6 +44,7 @@ const Home = () => {
               type="text"
               value={search}
               onChange={updateSearch}
+              placeholder="Search Recipes here eg : banana"
             />
           </div>
           <div className="col-md-4">
@@ -53,15 +54,19 @@ const Home = () => {
           </div>
         </div>
       </form>
-      {recipes.map((recipe) => (
-        <FoodCard
-          key={recipe.recipe.label}
-          title={recipe.recipe.label}
-          calories={recipe.recipe.calories}
-          image={recipe.recipe.image}
-          ingredients={recipe.recipe.ingredients}
-        />
-      ))}
+      <div className="row">
+        <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+          {recipes.map((recipe) => (
+            <FoodCard
+              key={recipe.recipe.label}
+              title={recipe.recipe.label}
+              calories={recipe.recipe.calories}
+              image={recipe.recipe.image}
+              ingredients={recipe.recipe.ingredients}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

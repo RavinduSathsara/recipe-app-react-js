@@ -6,7 +6,7 @@ const AppNavBar = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light fw-bold">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark fw-bold">
         <div className="container-fluid">
           <Link
             onClick={() => {
