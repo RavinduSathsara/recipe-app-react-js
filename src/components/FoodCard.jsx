@@ -12,7 +12,7 @@ const FoodCard = (props) => {
             <li>{ingredient.text}</li>
           ))}
         </ol>
-        <p className="card-text"> calories : {props.calories}</p>
+        <p className="card-text"> calories : {Math.floor(props.calories)}</p>
       </div>
     </div>
   );

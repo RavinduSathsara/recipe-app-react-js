@@ -44,7 +44,7 @@ const Home = () => {
               type="text"
               value={search}
               onChange={updateSearch}
-              placeholder="Search Recipes here eg : banana"
+              placeholder="Search Recipes here eg : Banana"
             />
           </div>
           <div className="col-md-4">
