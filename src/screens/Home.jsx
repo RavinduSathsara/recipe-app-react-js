@@ -14,13 +14,12 @@ const Home = () => {
   useEffect(() => {
     getRecipes();
   }, [query]);
-
   const getRecipes = async () => {
     const response = await fetch(
       `https://api.edamam.com/search?q=${query}&app_id=${AppId}&app_key=${AppKey}`
     );
     const data = await response.json();
-    // console.log(data.hits);
+    console.log(data.hits);
     setRecipes(data.hits);
   };
 
@@ -45,6 +44,7 @@ const Home = () => {
               value={search}
               onChange={updateSearch}
               placeholder="Search Recipes here eg : Banana"
+              required
             />
           </div>
           <div className="col-md-4">
@@ -54,10 +54,11 @@ const Home = () => {
           </div>
         </div>
       </form>
-      <div className="row">
+      <div>
         <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
           {recipes.map((recipe) => (
             <FoodCard
+              mealType={recipe.recipe.mealType}
               key={recipe.recipe.label}
               title={recipe.recipe.label}
               calories={recipe.recipe.calories}
